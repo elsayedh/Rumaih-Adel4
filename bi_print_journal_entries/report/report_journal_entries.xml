@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+	
+	<report id="journal_entry_report_id"
+				string="Print Journal Entries"
+				model="account.move"
+				report_type="qweb-pdf"
+				file="bi_print_journal_entries.journal_entry_report_template_id"
+				name="bi_print_journal_entries.journal_entry_report_template_id"/>
+
+
+	<report id="journal_entry_report_id_ar"
+				string="Print Journal Entries"
+				model="account.move"
+				report_type="qweb-pdf"
+				file="bi_print_journal_entries.journal_entry_report_template_id_ar"
+				name="bi_print_journal_entries.journal_entry_report_template_id_ar"/>
+
+		  <record id="inherit_view_account_move_form_Button" model="ir.ui.view">
+            <field name="name">account.move.button.print.form</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//header" position="inside">
+                <button string="Print EN" type="object" name="action_print_report" class="oe_highlight" icon="fa-print"
+                      />
+
+                      <button string="Print AR" type="object" name="action_print_report_ar" class="oe_highlight" icon="fa-print"
+                      />
+
+            </xpath>
+
+            </field>
+        </record>
+
+							
+	</data>
+</odoo>

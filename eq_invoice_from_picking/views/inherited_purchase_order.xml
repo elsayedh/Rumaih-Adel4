@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="purchase_order_form_inherit_tags" model="ir.ui.view">
+            <field name="name">purchase.order.form.inherit.tags</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="arch" type="xml">
+                <field name="date_approve" position="after">
+                    <field name="category_id" widget="many2many_tags"
+                           options="{'color_field': 'color', 'no_create_edit': True}" placeholder="Tags..."/>
+                    <field name="onecategory_id" invisible="1"/>
+                </field>
+                <xpath expr="//field[@name='partner_ref']" position="replace">
+                    <label for="partner_ref"/>
+                    <div class="o_row">
+                        <field name="partner_ref"/>
+                        <button name="create_accredition" type="object" string="Create" icon="fa-plus-square"
+                                class="oe_highlight"></button>
+                    </div>
+                </xpath>
+
+                <xpath expr="//notebook/page[1]" position="after">
+                    <page string="Accredition Info" name="accredition_page">
+                        <group name="other_cred">
+                            <field name="account_expense_categ_id"/>
+                            <field name="stock_account_input_categ_id"/>
+<!--                            <field name="onecategory_id"/>-->
+<!--&lt;!&ndash;                            <field name=""/>&ndash;&gt;-->
+
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_purchase_order_filter_inherit_tags" model="ir.ui.view">
+            <field name="name">view.purchase.order.filter.inherit.tags</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.view_purchase_order_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group" position="inside">
+                        <filter string="Tags" name="onecategory_id" domain="[]" context="{'group_by':'onecategory_id'}"/>
+
+                </xpath>
+            </field>
+        </record>
+
+
+
+        <record id="view_purchase_order_tree_tags" model="ir.ui.view">
+    <field name="name">purchase.order.tree.tags</field>
+    <field name="model">purchase.order</field>
+    <field name="inherit_id" ref="purchase.purchase_order_tree"/>
+
+    <field name="arch" type="xml">
+      <xpath expr="//field[@name='partner_id']" position="after">
+
+        <field name="onecategory_id"  />
+        </xpath>
+
+    </field>
+</record>
+    </data>
+</odoo>

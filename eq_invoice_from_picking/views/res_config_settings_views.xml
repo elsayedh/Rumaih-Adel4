@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="res_config_settings_view_form_purchase_cred" model="ir.ui.view">
+		<field name="name">res.config.settings.view.form.inherit.purchase.cred</field>
+		<field name="model">res.config.settings</field>
+		<field name="priority" eval="25"/>
+		<field name="inherit_id" ref="purchase.res_config_settings_view_form_purchase"/>
+		<field name="arch" type="xml">
+			<xpath expr="//div[@data-key='purchase']" position="inside">
+
+				<h2 >Accreditation Account</h2>
+				<div class="row mt16 o_settings_container">
+					<div class="col-12 col-lg-6 o_setting_box" >
+						<group>
+						  <field name ="cred_account_id"/>
+						  <field name ="cred_prefix"/>
+						  <field name ="cred_last_code"/>
+						  <field name ="property_valuation"/>
+						  <field name ="property_cost_method"/>
+<!--						  <field name ="property_account_income_categ_id"/>-->
+						  <field name ="property_stock_journal"/>
+						  <field name ="property_stock_account_output_categ_id"/>
+						  <field name ="property_stock_valuation_account_id"/>
+
+						</group>
+					</div>
+				</div>
+			</xpath>
+		</field>
+	</record>
+
+</odoo>

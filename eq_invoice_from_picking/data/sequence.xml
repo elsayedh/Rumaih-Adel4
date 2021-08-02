@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- Sequences for res.partner -->
+        <record id="seq_vend_res_partner" model="ir.sequence">
+            <field name="name">Res Partner</field>
+            <field name="code">res.partner</field>
+            <field name="prefix">LC/</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+
+
+            <record id="seq_accreditation" model="ir.sequence">
+            <field name="name">accreditation</field>
+            <field name="code">res.accreditation</field>
+            <field name="prefix">LC/</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,17 @@
+<odoo>
+  <data>
+
+    <record id="view_purchase_order_form_order_inherit_bill_22" model="ir.ui.view">
+      <field name="name">view.order.form.orderline_bill_22</field>
+      <field name="model">purchase.order</field>
+      <field name="inherit_id" ref="purchase.purchase_order_form"/>
+      <field name="groups_id" eval="[(6,0,[ref('purchase.group_purchase_user')])]"/>
+      <field name="arch" type="xml">
+        <xpath expr="//field[@name='order_line']/tree/field[@name='qty_invoiced']"   position="attributes">
+          <attribute name="invisible">1</attribute>
+        </xpath>
+      </field>
+    </record>
+
+  </data>
+</odoo>

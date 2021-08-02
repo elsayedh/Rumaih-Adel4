@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+  <data>
+
+    <record id="view_stock_land_form_custom" model="ir.ui.view">
+      <field name="name">view.stock.land.form.custom</field>
+      <field name="model">stock.landed.cost</field>
+      <field name="inherit_id" ref="stock_landed_costs.view_stock_landed_cost_form"/>
+      <field name="arch" type="xml">
+
+        <xpath expr="//page[@name='valuation_adjustments']/field[@name='valuation_adjustment_lines']/tree/field[@name='quantity']"
+               position="attributes">
+          <attribute name="sum">Total Tax Included</attribute>
+        </xpath>
+        <xpath expr="//page[@name='valuation_adjustments']/field[@name='valuation_adjustment_lines']/tree/field[@name='former_cost']"
+               position="attributes">
+          <attribute name="sum">Total Tax Included</attribute>
+        </xpath>
+        <xpath expr="//page[@name='valuation_adjustments']/field[@name='valuation_adjustment_lines']/tree/field[@name='final_cost']"
+               position="attributes">
+          <attribute name="sum">Total Tax Included</attribute>
+        </xpath>
+        <xpath expr="//page[@name='valuation_adjustments']/field[@name='valuation_adjustment_lines']/tree/field[@name='additional_landed_cost']"
+               position="attributes">
+          <attribute name="sum">Total Tax Included</attribute>
+        </xpath>
+
+      </field>
+    </record>
+
+  </data>
+</odoo>

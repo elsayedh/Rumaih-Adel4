@@ -29,7 +29,7 @@
     """,
     'author': "Sitaram",
     'website': "http://www.sitaramsolutions.in",
-    'depends': ['base', 'stock'],
+    'depends': ['base', 'stock','branch'],
     'data': [
         'wizard/sr_import_inventory_adjustment.xml',
         

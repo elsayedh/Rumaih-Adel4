@@ -23,7 +23,7 @@ class StockInventoryLine(models.Model):
     Cost_product = fields.Float(related='product_id.standard_price', store=True,readonly=True)
     Total_different = fields.Float('Total', compute='_compute_total_diff',
                                   readonly=True, digits='Product Unit of Measure', )
-    reason = fields.Char(string="")
+    reason = fields.Char(string="Reason")
 
 
     @api.depends('product_qty', 'theoretical_qty')

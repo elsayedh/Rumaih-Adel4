@@ -8,6 +8,8 @@
             <field name="vat" position="after">
                 <field name="branch_id"/>
             </field>
+
+
         </field>
     </record>
 </odoo>

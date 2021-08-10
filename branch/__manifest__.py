@@ -96,6 +96,7 @@ operating-Unit Operation for POS,operating-Unit Operation for Sales,operating-Un
         'security/multi_branch.xml',
         'security/ir.model.access.csv',
         'views/res_branch_view.xml',
+        'views/res_branch_expenses_view.xml',
         'views/inherited_res_users.xml',
         'views/inherited_sale_order.xml',
         'views/inherited_stock_picking.xml',
@@ -110,6 +111,7 @@ operating-Unit Operation for POS,operating-Unit Operation for Sales,operating-Un
         'views/inherited_product.xml',
         'views/inherited_partner.xml',
         'views/branch_template.xml',
+
     ],
     'qweb': [
         'static/src/xml/branch.xml',

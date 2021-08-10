@@ -19,6 +19,34 @@
                                 <field name="address"/>
                             </group>
                         </group>
+
+                        <notebook>
+                            <page string="Expenses">
+                                 <group>
+                                       <group>
+                                <field name="account_expense_credit_id"/>
+                            </group>
+                            <group>
+<!--                                <field name="account_expense_debit_id" />-->
+
+                            </group>
+
+                        </group>
+
+                            </page>
+                            <page string="Bank">
+                                 <group>
+                            <group>
+                                <field name="account_bank_debit_id"/>
+
+                            </group>
+                            <group>
+                                <field name="account_bank_credit_id"/>
+                            </group>
+                        </group>
+
+                            </page>
+                        </notebook>
                     </sheet>
                 </form>
             </field>

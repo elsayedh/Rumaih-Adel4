@@ -1,0 +1,159 @@
+<templates id="point_of_sale.template" xml:space="preserve">
+    <t t-name="OrderReceipt" t-inherit="point_of_sale.OrderReceipt" t-inherit-mode="extension" owl="1">
+        <xpath expr="//t[@t-if='!receipt.company.logo']" position="replace"></xpath>
+        <xpath expr="//t[@t-if='receipt.company.phone']" position="replace">
+            <div>تليفون:<t t-esc='receipt.company.phone' /></div>
+        </xpath>
+        <xpath expr="//t[@t-if='receipt.company.contact_address']" position="before">
+            <div>
+                <strong>
+                    <b>
+                        <bdi>فاتوره بيع</bdi>
+                    </b>
+                </strong>
+            </div>
+        </xpath>
+        <xpath expr="//t[@t-if='receipt.company.vat']" position="replace">
+            <div>رقم السجل الضريبى:<t t-esc='receipt.company.vat' /></div>
+        </xpath>
+        <xpath expr="//t[@t-if='receipt.company.email']" position="replace">
+             <div>
+                رقم السجل التجارى:<t t-esc='receipt.company.company_registry'/>
+            </div>
+        </xpath>
+        <xpath expr="//t[@t-if='receipt.company.website']" position="replace"></xpath>
+        <xpath expr="//div[hasclass('cashier')]" position="before">
+            <div><t t-esc='receipt.name' />رقم الفاتوره</div>
+            <div style="direction:rtl;">التاريخ<t t-esc='receipt.date.localestring' /></div>
+        </xpath>
+        <xpath expr="//div[hasclass('cashier')]" position="replace">
+            <div class="cach" style="direction:rtl;">
+                <br/>
+                <tr>
+                <div style="width:48%;display:inline-block;text-align:right;direction:rtl;">نقطه البيع<span style="padding:4px;"><t t-esc="widget.pos.config.name"/></span></div>
+<!--                <div style="width:24%;display:inline-block;direction:rtl;"> <t t-esc="widget.pos.config.current_user_id "/> </div>-->
+                <div style="width:50%;display:inline-block;text-align:right;direction:rtl;"><span style="text-align:left;">المستخدم<t t-esc="widget.pos.cashier ? widget.pos.cashier.name : widget.pos.user.name"/></span></div>
+<!--                <div style="width:24%;display:inline-block;direction:rtl;"><t t-esc="receipt.cashier"/> </div>-->
+                </tr>
+                 <tr>
+                <div style="width:24%;display:inline-block;text-align:right;direction:rtl;">طريقه الدفع:</div>
+                <div style="width:24%;display:inline-block;text-align:right;direction:rtl;" class="qq">
+                    <t t-foreach='paymentlines' t-as='line'>
+                        <span style="padding:2px;"><t t-esc='line.name'/></span>
+                    </t>
+                </div>
+                <div style="width:24%;display:inline-block;text-align:right;direction:rtl;">العميل:</div>
+                <t t-if='receipt.client'>
+                <div style="width:24%;display:inline-block;text-align:left;">
+                    <t t-esc='widget.pos.get_client().name'/>
+                </div>
+                </t>
+                     <t t-if='!receipt.client'>
+                        <div style="width:24%;display:inline-block;;text-align:left;"></div>
+                    </t>
+                </tr>
+            </div>
+        </xpath>
+        <xpath expr="//div[hasclass('pos-receipt-order-data')]" position="replace"></xpath>
+        <xpath expr="//div[hasclass('pos-receipt-center-align')]" position="replace"></xpath>
+        <xpath expr="//div[hasclass('orderlines')]" position="replace">
+            <div class="orderlines" style="font-size:11px;direction:rtl;">
+                <div style="border-top:solid 1px;border-bottom:solid 1px;">
+                    <div style="width:19%;display:inline-block;text-align:right;">البيان</div>
+                    <div style="width:19%;display:inline-block;text-align:right;">الكميه</div>
+                    <div style="width:19%;display:inline-block;text-align:right;">الضريبه</div>
+                    <div style="width:19%;display:inline-block;text-align:right;">سعر الوحده</div>
+                    <div style="width:19%;display:inline-block;text-align:right;">الاجمالى</div>
+                </div>
+                <t t-foreach='receipt.orderlines' t-as='line'>
+                    <t t-set="totQ" t-value="0"/>
+                        <div style="border-bottom:dashed 1px;">
+                            <tr>
+                                <div style="width:100%;text-align:right;">
+                                    <td >
+                                        <t t-if="line.ean13">
+                                            <span style="padding:5px;" t-esc="line.ean13"/>
+                                        </t>
+                                        <t t-esc='line.product_name.substr(0,25)'/>
+                                        <t t-if="line.discount !== 0" >
+                                             <div class="pos-disc-font">
+                                                 مع
+                                                 <t t-esc="line.discount"/>
+                                                 % خصم
+                                             </div>
+                                        </t>
+                                    </td>
+                                </div>
+                            </tr>
+                             <tr>
+                                 <div style="width:19%;display:inline-block;text-align:right;">
+                                     <td></td>
+                                </div>
+                                <div style="width:19%;display:inline-block;text-align:right;">
+                                    <td>
+                                        <t t-esc="line.quantity" />
+
+                                    </td>
+                                </div>
+                                <div style="width:19%;display:inline-block;overflow:hidden;text-align:right;">
+                                    <td>
+                                        <t t-esc="line.tax"/>
+                                    </td>
+                                </div>
+                                <div style="width:19%;display:inline-block;overflow:hidden;text-align:right;">
+                                    <td>
+                                        <t t-esc="line.price_display_one" />
+                                    </td>
+                                </div>
+                                <div style="width:19%;display:inline-block;overflow:hidden;text-align:right;">
+                                    <td style="text-align:right">
+                                        <t t-esc="widget.format_currency_no_symbol((line.price_display_one  * line.quantity)+ line.tax)"/>
+                                    </td>
+                                </div>
+                             </tr>
+                        </div>
+                </t>
+
+            </div>
+        </xpath>
+        <xpath expr="//div[hasclass('pos-receipt-amount')]" position="replace">
+            <div style="direction:rtl">
+                <t>
+                    <t t-set="qty" t-value="0"/>
+                    <t t-foreach="receipt.orderlines" t-as="line">
+                        <t t-set="qty" t-value="qty + line.quantity"/>
+                    </t>
+                </t>
+            </div>
+            <div style="font-size:11px;direction:rtl;">
+                <div style="border-top:solid 1px;">
+                    <div style="width:40%;display:inline-block;text-align:right;">عدد الفطع<span style="padding:4px"><t t-esc="qty"/></span></div>
+<!--                    <div style="width:19%;display:inline-block;text-align:right;"><t t-esc="qty"/> </div>-->
+                    <div style="width:57%;display:inline-block;text-align:right;">الصافى بدون الضريبه<span style="padding:4px"><t t-esc="widget.format_currency_no_symbol(receipt.subtotal)"/></span></div>
+                </div>
+                <div >
+                    <div style="width:40%;display:inline-block;text-align:right;direction:rtl;">الخصم<span style="padding:4px"><t t-esc="widget.format_currency_no_symbol(receipt.total_discount)"/></span></div>
+                    <!--<div style="width:24%;display:inline-block;padding:2px;overflow:hidden;text-align:right;"><t t-esc="widget.format_currency_no_symbol(receipt.total_discount)"/> </div>-->
+                    <div style="width:57%;display:inline-block;text-align:right;">الشبكه<span style="padding:4px;"></span></div>
+<!--                    <div style="width:26%;display:inline-block;text-align:right;"> </div>-->
+                </div>
+                <div >
+                <div style="width:40%;display:inline-block;padding:2px;text-align:right;">الضريبه الكليه<span style="padding:4px;"><t t-esc="widget.format_currency_no_symbol(receipt.total_tax)"/></span></div>
+                <!--<div style="width:24%;display:inline-block;padding:2px;overflow:hidden;border:0.25px solid;text-align:right;"><t t-esc="widget.format_currency_no_symbol(receipt.total_tax)"/> </div>-->
+                    <div style="width:57%;display:inline-block;text-align:right;"><span style="padding:4px;">الصافى الكلى<t t-esc="widget.format_currency_no_symbol(receipt.total_with_tax)"/></span></div>
+<!--                <div style="width:26%;display:inline-block;text-align:right;"><t t-esc="widget.format_currency_no_symbol(receipt.total_with_tax)"/> </div>-->
+            </div>
+                <div style="border-bottom:solid 1px">
+                <div style="width:40%;display:inline-block;text-align:right;">الباقى<span style="padding:4px;"><t t-esc="widget.format_currency_no_symbol(receipt.change)"/></span></div>
+                <div style="width:57%;display:inline-block;text-align:right;">المبلغ المدفوع<span style="padding:4px;"><t t-esc="widget.format_currency_no_symbol(receipt.total_with_tax + receipt.change)"/></span></div>
+                    <!--                <div style="width:26%;display:inline-block;text-align:right;"><t t-esc="widget.format_currency_no_symbol(receipt.change)"/> </div>-->
+            </div>
+            </div>
+        </xpath>
+        <xpath expr="//t[@t-if='!taxincluded']" position="replace"></xpath>
+        <xpath expr="//div[hasclass('pos-receipt-right-align')]" position="replace"></xpath>
+        <xpath expr="//div[hasclass('pos-receipt-amount')]" position="replace"></xpath>
+        <xpath expr="//t[@t-if='receipt.total_discount']" position="replace"></xpath>
+        <xpath expr="//t[@t-if='taxincluded']" position="replace"></xpath>
+    </t>
+</templates>

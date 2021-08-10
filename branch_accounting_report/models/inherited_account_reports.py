@@ -8,11 +8,14 @@ from odoo import models, fields, api, _
 
 class AccountReport(models.AbstractModel):
     _inherit = 'account.report'
+    # _name = 'account.analytic.branch.report'
+    # _description = 'Account Analytic Branch Report'
 
     filter_branch = None
 
     @api.model
     def _init_filter_branch(self, options, previous_options=None):
+
         if not self.filter_branch:
             return
 
@@ -25,10 +28,14 @@ class AccountReport(models.AbstractModel):
 
     @api.model
     def _get_options(self, previous_options=None):
+        options = super(AccountReport, self)._get_options(previous_options=previous_options)
+        print ("option get ", options)
         # Create default options.
-        options = {
-            'unfolded_lines': previous_options and previous_options.get('unfolded_lines') or [],
-        }
+        # options += {
+        #     'unfolded_lines': previous_options and previous_options.get('unfolded_lines') or [],
+        # }
+
+        options["unfolded_lines"]= previous_options and previous_options.get('unfolded_lines') or []
 
         # Multi-company is there for security purpose and can't be disabled by a filter.
         self._init_filter_multi_company(options, previous_options=previous_options)
@@ -55,11 +62,13 @@ class AccountReport(models.AbstractModel):
                         options[options_key] = previous_options[options_key]
                     else:
                         options[filter_key[7:]] = filter_opt
+        print("option get2 ", options)
         return options
 
 
     def _set_context(self, options):
         ctx = self.env.context.copy()
+        print("ctx",ctx)
         if options.get('date') and options['date'].get('date_from'):
             ctx['date_from'] = options['date']['date_from']
         if options.get('date'):
@@ -73,13 +82,13 @@ class AccountReport(models.AbstractModel):
             company_ids = [c.get('id') for c in options['multi_company'] if c.get('selected')]
             company_ids = company_ids if len(company_ids) > 0 else [c.get('id') for c in options['multi_company']]
         ctx['company_ids'] = len(company_ids) > 0 and company_ids or [self.env.company.id]
-
+        # comment by haytham
         if options.get('analytic_accounts'):
             ctx['analytic_account_ids'] = self.env['account.analytic.account'].browse([int(acc) for acc in options['analytic_accounts']])
 
         if options.get('analytic_tags'):
             ctx['analytic_tag_ids'] = self.env['account.analytic.tag'].browse([int(t) for t in options['analytic_tags']])
-
+        #comment
         if options.get('partner_ids'):
             ctx['partner_ids'] = self.env['res.partner'].browse([int(partner) for partner in options['partner_ids']])
 
@@ -125,7 +134,7 @@ class AccountReport(models.AbstractModel):
                 if journals_selected and journals_selected == set(self._get_filter_journals().ids) - set(journal_group.excluded_journal_ids.ids):
                     options['name_journal_group'] = journal_group.name
                     break
-
+        print("option",options)
         report_manager = self._get_report_manager(options)
         info = {'options': options,
                 'context': self.env.context,

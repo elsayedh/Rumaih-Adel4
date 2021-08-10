@@ -1,0 +1,178 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* pos_receipt_ean
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-08-08 12:20+0000\n"
+"PO-Revision-Date: 2021-08-08 12:20+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: pos_receipt_ean
+#. openerp-web
+#: code:addons/pos_receipt_ean/static/src/xml/print_ean.xml:0
+#, python-format
+msgid "% discount"
+msgstr "الخصم"
+
+#. module: pos_receipt_ean
+#. openerp-web
+#: code:addons/pos_receipt_ean/static/src/xml/print_ean.xml:0
+#, python-format
+msgid "Company Regestry:"
+msgstr "السجل التجارى"
+
+#. module: pos_receipt_ean
+#. openerp-web
+#: code:addons/pos_receipt_ean/static/src/xml/print_ean.xml:0
+#, python-format
+msgid "Name"
+msgstr "البيان"
+
+#. module: pos_receipt_ean
+#: model:ir.model,name:pos_receipt_ean.model_pos_config
+msgid "Point of Sale Configuration"
+msgstr ""
+
+#. module: pos_receipt_ean
+#: model_terms:ir.ui.view,arch_db:pos_receipt_ean.pos_config_view_form_inherit_pos_receipt_ean
+msgid "Print EAN in receipt once the payment is registered"
+msgstr ""
+
+#. module: pos_receipt_ean
+#: model:ir.model.fields,field_description:pos_receipt_ean.field_pos_config__print_ean_ticket
+msgid "Print EAN on Ticket"
+msgstr ""
+
+#. module: pos_receipt_ean
+#. openerp-web
+#: code:addons/pos_receipt_ean/static/src/xml/print_ean.xml:0
+#, python-format
+msgid "Qty"
+msgstr "الكميه"
+
+#. module: pos_receipt_ean
+#. openerp-web
+#: code:addons/pos_receipt_ean/static/src/xml/print_ean.xml:0
+#, python-format
+msgid "Tax"
+msgstr "الضريبه"
+
+#. module: pos_receipt_ean
+#. openerp-web
+#: code:addons/pos_receipt_ean/static/src/xml/print_ean.xml:0
+#, python-format
+msgid "Total"
+msgstr "السعر الكلى"
+
+#. module: pos_receipt_ean
+#. openerp-web
+#: code:addons/pos_receipt_ean/static/src/xml/print_ean.xml:0
+#, python-format
+msgid "Total Qty"
+msgstr "الكميه الكليه"
+
+#. module: pos_receipt_ean
+#. openerp-web
+#: code:addons/pos_receipt_ean/static/src/xml/print_ean.xml:0
+#, python-format
+msgid "UnitPr"
+msgstr "سعر الوجده"
+
+#. module: pos_receipt_ean
+#. openerp-web
+#: code:addons/pos_receipt_ean/static/src/xml/print_ean.xml:0
+#, python-format
+msgid "With a"
+msgstr "مع"
+
+#. module: pos_receipt_ean
+#. openerp-web
+#: code:addons/pos_receipt_ean/static/src/xml/print_ean.xml:0
+#, python-format
+msgid "change"
+msgstr "الباقى"
+
+#. module: pos_receipt_ean
+#. openerp-web
+#: code:addons/pos_receipt_ean/static/src/xml/print_ean.xml:0
+#, python-format
+msgid "counter num:"
+msgstr "رقم الكاونتر"
+
+#. module: pos_receipt_ean
+#. openerp-web
+#: code:addons/pos_receipt_ean/static/src/xml/print_ean.xml:0
+#, python-format
+msgid "customer:"
+msgstr "اسم العميل"
+
+#. module: pos_receipt_ean
+#. openerp-web
+#: code:addons/pos_receipt_ean/static/src/xml/print_ean.xml:0
+#, python-format
+msgid "discount"
+msgstr "الخصم"
+
+#. module: pos_receipt_ean
+#. openerp-web
+#: code:addons/pos_receipt_ean/static/src/xml/print_ean.xml:0
+#, python-format
+msgid "network"
+msgstr "الشبكه"
+
+#. module: pos_receipt_ean
+#. openerp-web
+#: code:addons/pos_receipt_ean/static/src/xml/print_ean.xml:0
+#, python-format
+msgid "payment method:"
+msgstr "طريقه الدفع"
+
+#. module: pos_receipt_ean
+#. openerp-web
+#: code:addons/pos_receipt_ean/static/src/xml/print_ean.xml:0
+#, python-format
+msgid "total"
+msgstr "المجموع"
+
+#. module: pos_receipt_ean
+#. openerp-web
+#: code:addons/pos_receipt_ean/static/src/xml/print_ean.xml:0
+#, python-format
+msgid "total paid"
+msgstr "المبلغ المدفوع"
+
+#. module: pos_receipt_ean
+#. openerp-web
+#: code:addons/pos_receipt_ean/static/src/xml/print_ean.xml:0
+#, python-format
+msgid "total tax"
+msgstr "الضريبه الكليه"
+
+#. module: pos_receipt_ean
+#. openerp-web
+#: code:addons/pos_receipt_ean/static/src/xml/print_ean.xml:0
+#, python-format
+msgid "total without tax"
+msgstr "السعر بدون الضريبه"
+
+#. module: pos_receipt_ean
+#. openerp-web
+#: code:addons/pos_receipt_ean/static/src/xml/print_ean.xml:0
+#, python-format
+msgid "user num:"
+msgstr "رقم المستخدم"
+
+#. module: pos_receipt_ean
+#. openerp-web
+#: code:addons/pos_receipt_ean/static/src/xml/print_ean.xml:0
+#, python-format
+msgid "فاتوره بيع"
+msgstr ""

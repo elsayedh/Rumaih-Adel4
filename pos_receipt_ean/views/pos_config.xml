@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="pos_config_view_form_inherit_pos_receipt_ean" model="ir.ui.view">
+        <field name="name">pos.config.form.view.pos_receipt_ean</field>
+        <field name="model">pos.config</field>
+        <field name="inherit_id" ref="point_of_sale.pos_config_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@id='order_reference']" position="after">
+                <div class="col-12 col-lg-6 o_setting_box" id="print_ean_ticket">
+                    <div class="o_setting_left_pane">
+                        <field name="print_ean_ticket" />
+                    </div>
+                    <div class="o_setting_right_pane">
+                        <label for="print_ean_ticket" />
+                        <div class="text-muted">
+                            Print EAN in receipt once the payment is registered
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

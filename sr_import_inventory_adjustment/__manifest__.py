@@ -32,7 +32,8 @@
     'depends': ['base', 'stock','branch'],
     'data': [
         'wizard/sr_import_inventory_adjustment.xml',
-        
+        'views/adjustment.xml',
+
     ],
     'live_test_url':'https://youtu.be/E8YMlI2doDg',
     'images': ['static/description/banner.png'],

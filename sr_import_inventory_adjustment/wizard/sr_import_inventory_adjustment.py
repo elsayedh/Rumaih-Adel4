@@ -17,6 +17,20 @@ import base64
 import io
 import csv
 
+class StockInventoryLine(models.Model):
+    _inherit = "stock.inventory.line"
+
+    Cost_product = fields.Float(related='product_id.standard_price', store=True,readonly=True)
+    Total_different = fields.Float('Difference', compute='_compute_total_diff',
+                                  readonly=True, digits='Product Unit of Measure', )
+    reason = fields.Char(string="")
+
+
+    @api.depends('product_qty', 'theoretical_qty')
+    def _compute_total_diff(self):
+        for line in self:
+           line.Total_different= line.difference_qty * line.product_id.standard_price
+
 
 class ImportInventoryAdjustment(models.TransientModel):
     _name = 'import.inventory.adjustment'
@@ -96,8 +110,8 @@ class ImportInventoryAdjustment(models.TransientModel):
             'product_ids':[(6,0,product_ids)]
             })
             inventory.action_start()
-            for record in inventory_val:
-                self.create_inventory_adjustment(record, inventory)
+            # for record in inventory_val:
+            #     self.create_inventory_adjustment(record, inventory)
             # inventory.action_validate()
         except Exception as e:
             raise UserError(_(e))

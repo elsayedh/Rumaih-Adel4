@@ -157,7 +157,13 @@ class generic_tax_report_inherit(models.AbstractModel):
         else:
             sql = self._sql_net_amt_regular_taxes()
 
+        print ("sql",sql)
+        print ("where_clause",where_clause)
+        print ("tables",tables)
+
         query = sql % (tables, where_clause)
+
+        print ("q2",query)
         self.env.cr.execute(query, where_params)
         results = self.env.cr.fetchall()
 
@@ -173,6 +179,10 @@ class generic_tax_report_inherit(models.AbstractModel):
             sql = self._sql_tax_amt_regular_taxes()
 
         query = sql % (tables, where_clause)
+
+
+        # query = sql % ('account_move as account_move_line__move_id,account_move_line', where_clause)
+
         self.env.cr.execute(query, where_params)
         results = self.env.cr.fetchall()
 

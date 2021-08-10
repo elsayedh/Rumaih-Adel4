@@ -20,6 +20,7 @@
  <xpath expr="//field[@name='difference_qty']" position="after">
                      <field name="Cost_product"/>
                      <field name="Total_different"/>
+                     <field name="reason"/>
                 </xpath>
 
             </field>

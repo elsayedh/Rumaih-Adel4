@@ -21,7 +21,7 @@ class StockInventoryLine(models.Model):
     _inherit = "stock.inventory.line"
 
     Cost_product = fields.Float(related='product_id.standard_price', store=True,readonly=True)
-    Total_different = fields.Float('Difference', compute='_compute_total_diff',
+    Total_different = fields.Float('Total', compute='_compute_total_diff',
                                   readonly=True, digits='Product Unit of Measure', )
     reason = fields.Char(string="")
 

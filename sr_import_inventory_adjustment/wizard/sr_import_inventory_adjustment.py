@@ -110,8 +110,9 @@ class ImportInventoryAdjustment(models.TransientModel):
             'product_ids':[(6,0,product_ids)]
             })
             inventory.action_start()
-            # for record in inventory_val:
-            #     self.create_inventory_adjustment(record, inventory)
+            for record in inventory_val:
+                print("record", record)
+                self.create_inventory_adjustment(record, inventory)
             # inventory.action_validate()
         except Exception as e:
             raise UserError(_(e))
@@ -142,14 +143,17 @@ class ImportInventoryAdjustment(models.TransientModel):
         print("product_id",product_id)
         print("inventory",inventory.name)
         inventory_lines = self.env['stock.inventory.line']
+
         try:
-            test = inventory_lines.create({
-                'product_id':product_id.id ,
-                'location_id' : self.location_id.id,
-                'product_uom_id' : product_id.uom_id.id  ,
-                'product_qty': value.get('qty'),
-                'inventory_id':inventory.id
-                })
+            found=inventory_lines.search([('product_id','=',product_id.id)])
+            if not found:
+                test = inventory_lines.create({
+                    'product_id':product_id.id ,
+                    'location_id' : self.location_id.id,
+                    'product_uom_id' : product_id.uom_id.id  ,
+                    'product_qty': value.get('qty'),
+                    'inventory_id':inventory.id
+                    })
         except:
             print("hi")
     
